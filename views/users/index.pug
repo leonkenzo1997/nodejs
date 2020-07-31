@@ -1,0 +1,27 @@
+extends ../layouts/common.pug
+    
+block content
+    h1 User List
+    .d-flex.align-items-center
+        a.btn.btn-primary(href="/users/create", style="margin-right: 20px") Create
+
+        a.btn.btn-primary(href="/users/delete") Delete
+
+        br
+
+        form.ml-auto(action="/users/search", method="get", class="d-flex")
+            input(type="text", name="q", value=search, class="input_search form-control ml-3 mr-3")
+            Button(class="btn btn-secondary") Search
+
+    table.table
+        tr
+            th Name
+            th Phone
+            th Action
+
+        each user in users 
+            tr
+                td= user.name
+                td= user.phone
+                td
+                    a.btn.btn-light(href="/users/" + user.id) View
