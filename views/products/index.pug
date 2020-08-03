@@ -1,0 +1,20 @@
+extends ../layouts/common.pug
+
+block content
+
+  h1 PRODUCT
+
+  .d-flex.align-items-center
+    form.ml-auto(action="/users/search" method="get" class="d-flex")
+      input(type="text" name="q", value=search, class="input_search form-control ml-3 mr-3")
+      Button(class="btn btn-primary") Search
+
+  .row     
+    each product in products
+      .col-sm-3.mb-4
+        .card(style='width: 15rem;')
+          img.card-img-top(src=product.image alt='Card image cap') 
+          .card-body
+            h5.card-title= product.name
+            p.card-text= product.description
+            a.btn.btn-primary(href='#') Go somewhere

@@ -1,5 +1,4 @@
 var express = require('express');
-var router  = require('express');
 
 var controller = require('../Controllers/user.controller');
 var validate =require('../validate/user.validate');
