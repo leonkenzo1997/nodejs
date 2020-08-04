@@ -34,7 +34,6 @@ module.exports.view = function (request, respone) {
     var id = request.params.id;
 
     var user = db.get('users').find({ id: id }).value();
-    console.log(user);
 
     respone.render('users/view', {
         user: user
@@ -42,10 +41,10 @@ module.exports.view = function (request, respone) {
 };
 
 module.exports.postCreate = function (request, respone) {
-    request.body.id = shortid.generate();
-    
-    console.log(respone.locals);
+    var data = request.body;
+    data.id = shortid.generate();
+    data.avatar = request.file.path.split('\\').slice(1).join('/'); 
 
-    db.get('users').push(request.body).write();
+    db.get('users').push(data).write();
     respone.redirect('/users');
 };

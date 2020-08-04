@@ -1,7 +1,5 @@
 require('dotenv').config();
 
-console.log(process.env.SESSION_SECRET);
-
 var express = require('express');
 
 var bodyParser = require('body-parser');
@@ -31,6 +29,7 @@ app.get('/', authMiddleware.requireAuth, function (request, respone) {
 app.use('/users', authMiddleware.requireAuth, userRoute);
 app.use('/auth', loginRoute);
 app.use('/products', authMiddleware.requireAuth, productRoute);
+
 // app.delete('/users/delete/:name', function(request, respone) {
 //     var query = request.query.q;
     

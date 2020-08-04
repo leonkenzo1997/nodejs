@@ -17,7 +17,6 @@ module.exports.requireAuth = function(request, respone, next) {
         return;
     }
 
-
     respone.locals.user = user;
     next();
 }
