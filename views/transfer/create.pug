@@ -4,6 +4,7 @@ block content
     h1 NEW TRANSFER
 
     form(action="/transfer/create", method="post")
+        input(type="hidden", name="_csrf", value=csrfToken)
         .form-group
             label(for='account') Account
             input#account.form-control(name="accountId", type="text")
