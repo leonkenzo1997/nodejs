@@ -6,7 +6,7 @@ var validate = require('../validate/user.validate');
 var router = express.Router();
 var upload = multer({ dest: './public/uploads/avatar' });
 
-var authMiddleware = require('../middleware/auth.middleware');
+var authMiddleware = require('../middlewares/auth.middleware');
 
 router.get('/', authMiddleware.requireAuth, controller.index);
 

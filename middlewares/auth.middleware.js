@@ -11,7 +11,6 @@ module.exports.requireAuth = function(request, respone, next) {
         id: request.signedCookies.userId 
     }).value();
 
-
     if(!user){
         respone.redirect('/auth/login');
         return;

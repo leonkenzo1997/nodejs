@@ -4,10 +4,16 @@ var express = require('express');
 
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var loginRoute = require('./Routes/auth.route');
-var authMiddleware =require('./middleware/auth.middleware');
-var userRoute = require('./Routes/users.route');
-var productRoute = require('./Routes/products.route');
+
+var authRoute = require('./routes/auth.route');
+var userRoute = require('./routes/user.route');
+var productRoute = require('./routes/product.route');
+var cartRoute = require('./routes/cart.route');
+var transferRoute = require('./routes/transfer.route');
+ 
+var sessionMiddleware = require('./middlewares/session.middleware'); 
+var authMiddleware = require('./middlewares/auth.middleware');
+
 var port = 3000;
 
 var app = express();
@@ -17,6 +23,7 @@ app.set('views', './views');
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cookieParser(process.env.SESSION_SECRET));
+// app.use(sessionMiddleware.session);
 
 app.use(express.static('public'));
 
@@ -27,8 +34,10 @@ app.get('/', authMiddleware.requireAuth, function (request, respone) {
 });
 
 app.use('/users', authMiddleware.requireAuth, userRoute);
-app.use('/auth', loginRoute);
-app.use('/products', authMiddleware.requireAuth, productRoute);
+app.use('/auth', authRoute);
+app.use('/products', productRoute);
+app.use('/cart', cartRoute);
+app.use('/transfer', transferRoute);
 
 // app.delete('/users/delete/:name', function(request, respone) {
 //     var query = request.query.q;
