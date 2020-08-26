@@ -19,7 +19,6 @@ module.exports.postLogin = function (request, respone) {
             errors: errors,
             values: request.body
         });
-
         return;
     }
 

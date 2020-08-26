@@ -3,7 +3,7 @@ var db = require("../db");
 module.exports.index = function(request, respone){
 
     var page = parseInt(request.query.page) || 1;
-    var itemPerPage = 20;
+    var itemPerPage = 18;
     var start = (page - 1) * itemPerPage; 
     var end = page * itemPerPage;
 
